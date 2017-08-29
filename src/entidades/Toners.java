@@ -27,7 +27,18 @@ public class Toners implements EntidadeBase {
     @Column(name = "Modelo")
     private String modelo;
     
-    public Toners() {
+     @Column(name = "Quantidade")
+    private String quantidade;
+
+    public String getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(String quantidade) {
+        this.quantidade = quantidade;
+    }
+    
+     public Toners() {
         setCor("String");
     }
 

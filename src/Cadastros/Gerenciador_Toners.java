@@ -9,7 +9,10 @@ import Tabela.ModeloTabelaToners;
 import dao.TonersDAO;
 import entidades.Toners;
 import java.awt.Dimension;
+import java.text.MessageFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import utilitarios.ViewDialog;
 
 /**
@@ -44,18 +47,8 @@ public class Gerenciador_Toners extends FormPadrao {
         btCadastrar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btPrint = new javax.swing.JToggleButton();
 
-        TabelaToners.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(TabelaToners);
 
         btListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/listar.png"))); // NOI18N
@@ -85,21 +78,29 @@ public class Gerenciador_Toners extends FormPadrao {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Gerenciador de Toners");
 
+        btPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/impressora.png"))); // NOI18N
+        btPrint.setText("Print");
+        btPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPrintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
+                        .addComponent(btPrint)
+                        .addGap(18, 18, 18)
                         .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
+                        .addGap(32, 32, 32)
                         .addComponent(btCadastrar)
-                        .addGap(38, 38, 38)
+                        .addGap(47, 47, 47)
                         .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -119,7 +120,8 @@ public class Gerenciador_Toners extends FormPadrao {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar)
                     .addComponent(btListar)
-                    .addComponent(btSair))
+                    .addComponent(btSair)
+                    .addComponent(btPrint))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -144,11 +146,22 @@ public class Gerenciador_Toners extends FormPadrao {
         
     }//GEN-LAST:event_btListarActionPerformed
 
+    private void btPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPrintActionPerformed
+        try{
+            MessageFormat header = new MessageFormat("Relatorio Toners");
+            MessageFormat footer = new MessageFormat("Semob");
+        
+        TabelaToners.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        }catch(Exception e){
+            JOptionPane.showConfirmDialog(null, e);
+    }//GEN-LAST:event_btPrintActionPerformed
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaToners;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btListar;
+    private javax.swing.JToggleButton btPrint;
     private javax.swing.JButton btSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

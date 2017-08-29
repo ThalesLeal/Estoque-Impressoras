@@ -5,42 +5,34 @@
  */
 package Tabela;
 
-import entidades.Toners;
+import entidades.Cor;
 
 /**
  *
  * @author Thales Leal
  */
-public class ModeloTabelaToners extends TableModelAbstract<Toners> {
+public class ModeloTabelaCor extends TableModelAbstract<Cor> {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
     // Two arrays used for the table data
-    private String[] columnNames = {"Nome", "Cor","Modelo","Quantidade"};
+    private String[] columnNames = {"Nome"};
     private final int NOME = 0;
-    private final int COR = 1;
-    private final int MODELO = 2;
-    private final int QUANTIDADE = 3;
-    public ModeloTabelaToners() {
+
+    public ModeloTabelaCor() {
         setColumnNames(columnNames);
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Toners item = getItem(rowIndex);
+        Cor item = getItem(rowIndex);
 
         switch (columnIndex) {
             case NOME:
                 return item.getNome();
-            case COR:
-                return item.getCor();
-            case MODELO:
-                return item.getModelo();
-            case QUANTIDADE:
-                return item.getQuantidade();
-            default:
+                    default:
                 // Não deve ocorrer, pois só existem 2 colunas
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -51,13 +43,7 @@ public class ModeloTabelaToners extends TableModelAbstract<Toners> {
         switch (columnIndex) {
             case NOME:
                 return String.class;
-            case COR:
-                return String.class;
-            case MODELO:
-                return String.class;
-            case QUANTIDADE:
-                return String.class;
-            default:
+                    default:
                 // Não deve ocorrer, pois só existem 2 colunas
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

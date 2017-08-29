@@ -9,15 +9,18 @@ import Tabela.ModeloTabelaImpressora;
 import dao.ImpressoraDAO;
 import entidades.Impressora;
 import java.awt.Dimension;
+import java.text.MessageFormat;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import utilitarios.ViewDialog;
 
 /**
  *
  * @author Thales Leal
  */
-public class Gerenciador_Impressora extends FormPadrao{
+public class Gerenciador_Impressora extends FormPadrao {
 
     private JDialog view;
     private ModeloTabelaImpressora modeloTabelaImpressora = new ModeloTabelaImpressora();
@@ -27,7 +30,7 @@ public class Gerenciador_Impressora extends FormPadrao{
      */
     public Gerenciador_Impressora() {
         initComponents();
-        
+
         TabelaImpressora.setModel(modeloTabelaImpressora);
     }
 
@@ -46,6 +49,7 @@ public class Gerenciador_Impressora extends FormPadrao{
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelaImpressora = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))));
         setPreferredSize(new java.awt.Dimension(400, 400));
@@ -76,19 +80,123 @@ public class Gerenciador_Impressora extends FormPadrao{
 
         TabelaImpressora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(TabelaImpressora);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Gerenciador de Impressora");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/impressora.png"))); // NOI18N
+        jButton1.setText("Print");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,10 +206,12 @@ public class Gerenciador_Impressora extends FormPadrao{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 46, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btListar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,7 +234,8 @@ public class Gerenciador_Impressora extends FormPadrao{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btListar)
                     .addComponent(btCadastrar)
-                    .addComponent(btFechar))
+                    .addComponent(btFechar)
+                    .addComponent(jButton1))
                 .addGap(33, 33, 33))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -143,16 +254,27 @@ public class Gerenciador_Impressora extends FormPadrao{
     private void btListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btListarActionPerformed
         modeloTabelaImpressora.limpar();
         List<Impressora> impressora = ImpressoraDAO.getInstance().findAll();
-        for(Impressora item: impressora){
+        for (Impressora item : impressora) {
             modeloTabelaImpressora.addItem(item);
     }//GEN-LAST:event_btListarActionPerformed
     }
-   
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            MessageFormat header = new MessageFormat("Relatorio de Impressoras");
+            MessageFormat footer = new MessageFormat("Semob");
+            TabelaImpressora.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelaImpressora;
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btFechar;
     private javax.swing.JButton btListar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

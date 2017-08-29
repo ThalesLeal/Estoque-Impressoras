@@ -32,7 +32,10 @@ public class Impressora implements EntidadeBase {
 
     @Column(name = "Modelo")
     private String modelo;
-
+    
+    @Column(name = "Fornecedor")
+    private String fornecedor;
+    
     @Column(name = "Ativo")
     private Boolean ativo;
 
@@ -106,6 +109,18 @@ public class Impressora implements EntidadeBase {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public String getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(String fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+
+    public void setCor(String nome) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

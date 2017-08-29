@@ -5,48 +5,34 @@
  */
 package Tabela;
 
-import entidades.Impressora;
+import entidades.Fornecedor;
 
 /**
  *
  * @author Thales Leal
  */
-public class ModeloTabelaImpressora extends TableModelAbstract<Impressora> {
+public class ModeloTabelaFornecedor extends TableModelAbstract<Fornecedor> {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
     // Two arrays used for the table data
-    private String[] columnNames = {"Nome", "Ip","Locada","Setor","Modelo","Fornecedor","Ativo"};
+    private String[] columnNames = {"Nome", "Ativo"};
     private final int NOME = 0;
-    private final int IP = 1;
-    private final int LOCADA = 2;
-    private final int SETOR = 3;
-    private final int MODELO = 4;
-    private final int FORNECEDOR = 5;
-    private final int ATIVO = 6;
-    public ModeloTabelaImpressora() {
+    private final int ATIVO = 1;
+
+    public ModeloTabelaFornecedor() {
         setColumnNames(columnNames);
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Impressora item = getItem(rowIndex);
+        Fornecedor item = getItem(rowIndex);
 
         switch (columnIndex) {
             case NOME:
                 return item.getNome();
-            case IP:
-                return item.getIp();
-            case LOCADA:
-                return item.getLocada();
-            case SETOR:
-                return item.getSetor();
-            case MODELO:
-                return item.getModelo();
-            case FORNECEDOR:
-                return item.getAtivo();
             case ATIVO:
                 return item.getAtivo();
             default:
@@ -59,16 +45,6 @@ public class ModeloTabelaImpressora extends TableModelAbstract<Impressora> {
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case NOME:
-                return String.class;
-            case IP:
-                return String.class;
-            case LOCADA:
-                return String.class;
-            case SETOR:
-                return String.class;
-            case MODELO:
-                return String.class;
-            case FORNECEDOR:
                 return String.class;
             case ATIVO:
                 return Boolean.class;

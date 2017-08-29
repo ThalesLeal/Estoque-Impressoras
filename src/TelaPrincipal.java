@@ -4,6 +4,7 @@ import javax.swing.*;
 import Cadastros.Gerenciador_Impressora;
 import Cadastros.Gerenciador_ModeloImpressora;
 import Cadastros.Gerenciador_Toners;
+import Cadastros.Gerenciador_fornecedor;
 import Cadastros.Gerenciador_setor;
 import Cadastros.Gerenciador_usuarios;
 import Consulta.Emitir_Relatorios;
@@ -54,7 +55,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jlHora = new javax.swing.JLabel();
         btSair = new javax.swing.JButton();
         btConsulta = new javax.swing.JButton();
-        btRelatorios = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btToners = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
@@ -99,14 +99,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/pesquisar.png"))); // NOI18N
         btConsulta.setText("Consulta");
 
-        btRelatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/impressora.png"))); // NOI18N
-        btRelatorios.setText("Relatorios");
-        btRelatorios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRelatoriosActionPerformed(evt);
-            }
-        });
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/user.png"))); // NOI18N
         jLabel3.setText("Usuario:");
 
@@ -135,8 +127,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(77, 77, 77))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btRelatorios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                         .addComponent(btToners, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
                 .addComponent(btSair)
@@ -151,10 +142,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(btConsulta)
                 .addGap(18, 18, 18)
-                .addComponent(btRelatorios)
-                .addGap(18, 18, 18)
                 .addComponent(btToners)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btSair, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -196,6 +185,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/help.png"))); // NOI18N
         jMenuItem3.setText("Fornecedor");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         Menu_Cadastros.add(jMenuItem3);
 
         menuSetor.setText("Setores");
@@ -348,13 +342,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         view.showView();
     }//GEN-LAST:event_gerenciarModeloActionPerformed
 
-    private void btRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatoriosActionPerformed
-        Emitir_Relatorios form = new Emitir_Relatorios();
-        ViewDialog view = new ViewDialog("Emição de Relatorios", form, new Dimension(400, 190), this);
-        form.setView(view);
-        view.showView();
-    }//GEN-LAST:event_btRelatoriosActionPerformed
-
     private void btTonersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTonersActionPerformed
         Gerenciador_Toners form = new Gerenciador_Toners();
         ViewDialog view = new ViewDialog("Gerenciador_Toners", form, new Dimension(650, 500), this);
@@ -374,6 +361,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Timer timer = new Timer(1000, new hora());
         timer.start();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        Gerenciador_fornecedor form = new Gerenciador_fornecedor();
+        ViewDialog view = new ViewDialog("Gerenciador de Fornecedor", form, new Dimension(550, 400), this);
+        form.setView(view);
+        view.showView();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,7 +418,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu Menu_Cadastros;
     private javax.swing.JMenu Menu_sair;
     private javax.swing.JButton btConsulta;
-    private javax.swing.JButton btRelatorios;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btToners;
     private javax.swing.JMenuItem gerenciarImpressora;
